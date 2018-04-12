@@ -4,10 +4,10 @@ io.on('connection', (client) => {
     
     console.log('Usuario conectado');
 
-    client.emit('mensaje', {
-        usuario: 'Admin',
-        mensaje: 'Bienvenido!'
-    });
+    //client.emit('mensaje', {
+    //    usuario: 'Admin',
+     //   mensaje: 'Bienvenido!'
+    //});
 
     client.on('disconnect', ()=>{
         console.log('Usuario desconectado');
@@ -20,6 +20,7 @@ io.on('connection', (client) => {
 
         client.broadcast.emit('mensaje', data);
 
+        callback(data);
        // if(mensaje.usuario){
         //    callback({
        //         resp: 'exito!'
