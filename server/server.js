@@ -16,26 +16,8 @@ const port = process.env.PORT || 3000;
 app.use(express.static(publicPath));
 
 // comunicacion del backend
-let io = socketIO(server);
-
-io.on('connection', (client) => {
-    
-    console.log('Usuario conectado');
-
-    client.emit('Bienvenida', {
-        usuario: 'Admin',
-        mensaje: 'Bienvenido!'
-    });
-
-    client.on('disconnect', ()=>{
-        console.log('Usuario desconectado');
-    });
-
-    // Escuchar mensaje del cliente
-    client.on('enviarMensaje', (mensaje)=>{
-        console.log(mensaje)
-    });
-});
+module.exports.io = socketIO(server);
+require('./sockets/socket');
 
 server.listen(port, (err) => {
 
