@@ -4,7 +4,7 @@ io.on('connection', (client) => {
     
     console.log('Usuario conectado');
 
-    client.emit('Bienvenida', {
+    client.emit('mensaje', {
         usuario: 'Admin',
         mensaje: 'Bienvenido!'
     });
@@ -14,17 +14,20 @@ io.on('connection', (client) => {
     });
 
     // Escuchar mensaje del cliente
-    client.on('enviarMensaje', (mensaje, callback)=>{
-        console.log(mensaje);
+    client.on('enviarMensaje', (data, callback)=>{
+       
+        console.log(data);
 
-        if(mensaje.usuario){
-            callback({
-                resp: 'exito!'
-            });
-        }else{
-            callback({
-                resp: 'fallo :('
-            });
-        }
+        client.broadcast.emit('mensaje', data);
+
+       // if(mensaje.usuario){
+        //    callback({
+       //         resp: 'exito!'
+       //     });
+      //  }else{
+       //     callback({
+       //         resp: 'fallo :('
+       //     });
+      //  }
     });
 });

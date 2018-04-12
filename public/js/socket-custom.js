@@ -19,6 +19,6 @@ socket.emit('enviarMensaje', {
 });
 
 // Escuchar informacion
-socket.on('Bienvenida', function (mensaje){
+socket.on('mensaje', function (mensaje){
     console.log(mensaje);
 })
